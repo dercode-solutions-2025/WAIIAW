@@ -9,10 +9,6 @@ ast = {
     "RIGHT": None,
     "SYMBOL": None,
   },
-  "FunctionDefinition": {
-    "NAME": None,
-    "LOGIC": None,
-  },
   "FunctionCalls": {
     "FUNCTION": {
       "ARGUMENT": None,
@@ -22,7 +18,7 @@ ast = {
 }
 types = ["int", "str", "bool", "list"]
 ops = ["+", "-", "/", "*"]
-identifiers = ["def", "print", ast["FunctionDefinition"]["NAME"]]
+identifiers = ["print"]
 builtins = ["print", "scanf"]
 def to_ast(line):
     line = line.split()
@@ -39,11 +35,7 @@ def to_ast(line):
         ast["BinaryExpression"]["SYMBOL"] = line[1]
         print(ast["BinaryExpression"])
     elif operator in identifiers:
-      if operator == "def":
-        ast["FunctionDefinition"]["NAME"] = line[1]
-        ast["FunctionDefinition"]["LOGIC"] = line[2]
-        print(ast["FunctionDefinition"])
-      elif operator.lower() in builtins:
+      if operator.lower() in builtins:
         ast["FunctionCalls"]["FUNCTION"]["ARGUMENT"] = line[1]
         ast["FunctionCalls"]["FUNCTION"]["NAME"] = line[0]
         print(ast["FunctionCalls"])
